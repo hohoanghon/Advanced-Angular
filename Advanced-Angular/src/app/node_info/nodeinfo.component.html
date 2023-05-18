@@ -1,0 +1,25 @@
+<h2>Node Information</h2>
+<form [formGroup]="updateNodeInfoForm" (ngSubmit)="onSubmit()">
+    <kendo-formfield showErrors="initial">
+        <kendo-label for="node-title" [text]="'Node Title'"></kendo-label>
+        <kendo-textbox formControlName="nodeTitle" [clearButton]="true" #nodeTitle></kendo-textbox>
+        <kendo-formerror>Error: Node Title is required</kendo-formerror>
+    </kendo-formfield>
+    <kendo-formfield showErrors="initial">
+        <kendo-label [for]="'nodeType'" [text]="'Node Type'"></kendo-label>
+        <kendo-dropdownlist formControlName="nodeType" #nodeType  [data]="types"></kendo-dropdownlist>
+        <kendo-formerror *ngIf="updateNodeInfoForm.controls.nodeType.errors?.required">Error: Node type is required</kendo-formerror>
+    </kendo-formfield>
+</form>
+<kendo-grid 
+    [data]="dataGrid"
+    [pageSize]="10"
+    [pageable]="true"
+    [sortable]="true"
+    [filterable]="true"
+    [groupable]="true"
+>
+    <kendo-grid-column field="id" title="ID" [width]="10"></kendo-grid-column>
+    <kendo-grid-column field="name" title="Name" [width]="20"></kendo-grid-column>
+    <kendo-grid-column field="desc" title="Desciption" [width]="20"></kendo-grid-column>
+</kendo-grid>
