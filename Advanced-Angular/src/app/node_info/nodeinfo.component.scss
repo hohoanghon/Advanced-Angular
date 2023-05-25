@@ -1,12 +1,5 @@
-kendo-grid {
-    width: 500px;
-}
-
 kendo-dropdownlist {
     width: 90px;
-}
-
-kendo-formerror {
 }
 
 kendo-textbox {
@@ -21,4 +14,33 @@ kendo-formfield {
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
+}
+
+.button {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    margin-top: 25px;
+    margin-right: 30px;
+}
+
+.dataOfNode {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 410px;
+}
+
+.attributes {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.dropdown {
+    margin-left: 60px;
+}
+
+h3 {
+    margin-left: 30px;
 }

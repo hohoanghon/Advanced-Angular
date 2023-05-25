@@ -13,12 +13,19 @@ import { ButtonsModule } from "@progress/kendo-angular-buttons";
 import { DropDownsModule } from "@progress/kendo-angular-dropdowns";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { GridModule } from '@progress/kendo-angular-grid';
+import { HttpClientModule } from '@angular/common/http';
+import { AttributeComponent } from './attributes/attribute.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
     AppComponent,
     TreeViewComponent,
-    NodeInfoComponent
+    NodeInfoComponent,
+    AttributeComponent
   ],
   imports: [
     GridModule,
@@ -31,7 +38,12 @@ import { GridModule } from '@progress/kendo-angular-grid';
     InputsModule,
     LabelModule,
     ButtonsModule,
-    DropDownsModule
+    DropDownsModule,
+    HttpClientModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

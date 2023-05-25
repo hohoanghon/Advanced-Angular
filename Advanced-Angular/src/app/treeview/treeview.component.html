@@ -1,6 +1,11 @@
-<kendo-treeview 
-    textField="text" 
-    [nodes]="data" 
-    [children]="children" 
-    [hasChildren]="hasChildren">
+<h3>Treeview Excercise</h3>
+<span (click)="addNodeHandler()" class=" k-icon k-i-folder-add"> </span>
+<span (click)="deleteNodeHandler()" class=" k-icon k-i-trash"> </span>
+<kendo-treeview textField="nodeTitle" [nodes]="data" [filterable]="true" childrenField="childNodes"
+    kendoTreeViewSelectable kendoTreeViewHierarchyBinding kendoTreeViewExpandable [(selectedKeys)]="selectedKeys"
+    (selectionChange)="onSelectionChange($event)">
+    <ng-template kendoTreeViewNodeTemplate let-dataItem>
+        <span [ngClass]="iconClass(dataItem)"></span>
+        {{ dataItem.nodeTitle }}
+    </ng-template>
 </kendo-treeview>

@@ -1,25 +1,31 @@
-<h2>Node Information</h2>
+<h3>Node Information</h3>
 <form [formGroup]="updateNodeInfoForm" (ngSubmit)="onSubmit()">
-    <kendo-formfield showErrors="initial">
-        <kendo-label for="node-title" [text]="'Node Title'"></kendo-label>
-        <kendo-textbox formControlName="nodeTitle" [clearButton]="true" #nodeTitle></kendo-textbox>
-        <kendo-formerror>Error: Node Title is required</kendo-formerror>
-    </kendo-formfield>
-    <kendo-formfield showErrors="initial">
-        <kendo-label [for]="'nodeType'" [text]="'Node Type'"></kendo-label>
-        <kendo-dropdownlist formControlName="nodeType" #nodeType  [data]="types"></kendo-dropdownlist>
-        <kendo-formerror *ngIf="updateNodeInfoForm.controls.nodeType.errors?.required">Error: Node type is required</kendo-formerror>
-    </kendo-formfield>
+    <div class="dataOfNode">
+        <kendo-formfield showErrors="initial">
+            <kendo-label for="node-title" [text]="'Node Title'"></kendo-label>
+            <kendo-textbox formControlName="nodeTitle" [clearButton]="true" #nodeTitle
+                [(ngModel)]="nodeTitleValue"></kendo-textbox>
+            <kendo-formerror *ngIf="updateNodeInfoForm.controls.nodeTitle.errors?.required">Error: Node Title is required</kendo-formerror>
+            <kendo-formerror *ngIf="updateNodeInfoForm.controls.nodeTitle.errors?.pattern">Error: Node Title should be non-special characters (!,@,#,...) and be between 3 and 20 characters long.</kendo-formerror>
+        </kendo-formfield>
+        <kendo-formfield showErrors="initial" class="dropdown">
+            <kendo-label [for]="'nodeType'" [text]="'Node Type'"></kendo-label>
+            <kendo-dropdownlist formControlName="nodeType" #nodeType [data]="types" [(ngModel)]="nodeTypeValue"
+                [disabled]="dropdownDisabled">
+            </kendo-dropdownlist>
+            <kendo-formerror *ngIf="updateNodeInfoForm.controls.nodeType.errors?.required">Error: Node type is
+                required</kendo-formerror>
+        </kendo-formfield>
+    </div>
+    <div class="attributes">
+        <attribute-component 
+            [currentNodeId]="currentNodeId"
+            [submitStatus]="submitStatus"
+            [dataGrid]="dataGrid">
+        </attribute-component>
+    </div>
+    <div class="button">
+        <button mat-button primary type="submit"
+            [disabled]="!updateNodeInfoForm.valid || !updateNodeInfoForm.dirty">Save</button>
+    </div>
 </form>
-<kendo-grid 
-    [data]="dataGrid"
-    [pageSize]="10"
-    [pageable]="true"
-    [sortable]="true"
-    [filterable]="true"
-    [groupable]="true"
->
-    <kendo-grid-column field="id" title="ID" [width]="10"></kendo-grid-column>
-    <kendo-grid-column field="name" title="Name" [width]="20"></kendo-grid-column>
-    <kendo-grid-column field="desc" title="Desciption" [width]="20"></kendo-grid-column>
-</kendo-grid>
